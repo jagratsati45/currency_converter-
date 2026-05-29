@@ -3,47 +3,115 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Currency Converter</title>
+    <title>Currency Converter — Live Exchange Rates</title>
+    <meta
+      name="description"
+      content="Convert currencies instantly with live exchange rates. Supports 150+ world currencies with real-time data."
+    />
     <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-   
   </head>
   <body>
-    <div class="container">
-      <h2>Currency Converter</h2>
-      <form>
-        <div class="amount">
-          <p>Enter Amount</p>
-          <input value="1" type="text" />
-        </div>
-        <div class="dropdown">
-          <div class="from">
-            <p>From</p>
-            <div class="select-container">
-              <img src="https://flagsapi.com/US/flat/64.png" />
-              <select name="from">
-               
-              </select>
-            </div>
+    <!-- Animated background orbs -->
+    <div class="bg-orbs" aria-hidden="true">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+
+    <main class="app" id="app">
+      <!-- Header -->
+      <header class="app-header">
+        <div class="logo">
+          <div class="logo-icon">
+            <i class="fa-solid fa-coins"></i>
           </div>
-          <i class="fa-solid fa-arrow-right-arrow-left"></i>
-          <div class="to">
-            <p>To</p>
-            <div class="select-container">
-              <img src="https://flagsapi.com/IN/flat/64.png" />
-              <select name="to">
-               
-              </select>
-            </div>
+          <div class="logo-text">
+            <h1>Currency Converter</h1>
+            <p class="tagline">Real-time exchange rates</p>
           </div>
         </div>
-        <div class="msg">1USD = 91.91 INR</div>
+      </header>
+
+      <!-- Card -->
+      <section class="card" id="converter-card">
+        <form id="converter-form" autocomplete="off">
+          <!-- Amount Input -->
+          <div class="input-group" id="amount-group">
+            <label for="amount-input" class="input-label">Amount</label>
+            <div class="input-wrapper">
+              <input
+                id="amount-input"
+                value="1"
+                type="number"
+                min="0"
+                step="any"
+                placeholder="Enter amount..."
+              />
+              <span class="input-icon">
+                <i class="fa-solid fa-money-bill-wave"></i>
+              </span>
+            </div>
+          </div>
+
+          <!-- Currency Selectors -->
+          <div class="currency-row" id="currency-row">
+            <!-- FROM -->
+            <div class="currency-picker" id="from-picker">
+              <label class="input-label">From</label>
+              <div class="picker-box">
+                <img
+                  class="flag-img"
+                  src="https://flagsapi.com/US/flat/64.png"
+                  alt="From country flag"
+                  id="from-flag"
+                />
+                <select name="from" id="from-select" aria-label="From currency">
+                </select>
+                <i class="fa-solid fa-chevron-down picker-arrow"></i>
+              </div>
+            </div>
+
+            <!-- Swap Button -->
+            <button
+              type="button"
+              class="swap-btn"
+              id="swap-btn"
+              aria-label="Swap currencies"
+              title="Swap currencies"
+            >
+              <i class="fa-solid fa-arrow-right-arrow-left"></i>
+            </button>
+
+            <!-- TO -->
+            <div class="currency-picker" id="to-picker">
+              <label class="input-label">To</label>
+              <div class="picker-box">
+                <img
+                  class="flag-img"
+                  src="https://flagsapi.com/IN/flat/64.png"
+                  alt="To country flag"
+                  id="to-flag"
+                />
+                <select name="to" id="to-select" aria-label="To currency">
+                </select>
+                <i class="fa-solid fa-chevron-down picker-arrow"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="msg">1USD = 80INR</div>
         <button>Convert</button>
       </form>
     </div>
