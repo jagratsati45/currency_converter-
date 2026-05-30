@@ -23,7 +23,7 @@
     />
   </head>
   <body>
-    <!-- Animated background orbs -->
+    <!-- Floating animated gradient orbs for background effect -->
     <div class="bg-orbs" aria-hidden="true">
       <div class="orb orb-1"></div>
       <div class="orb orb-2"></div>
@@ -31,7 +31,6 @@
     </div>
 
     <main class="app" id="app">
-      <!-- Header -->
       <header class="app-header">
         <div class="logo">
           <div class="logo-icon">
@@ -44,10 +43,10 @@
         </div>
       </header>
 
-      <!-- Card -->
+      <!-- Main converter card with glassmorphism styling -->
       <section class="card" id="converter-card">
         <form id="converter-form" autocomplete="off">
-          <!-- Amount Input -->
+          <!-- Amount input with icon -->
           <div class="input-group" id="amount-group">
             <label for="amount-input" class="input-label">Amount</label>
             <div class="input-wrapper">
@@ -65,9 +64,8 @@
             </div>
           </div>
 
-          <!-- Currency Selectors -->
+          <!-- Currency selection row: From, Swap, To -->
           <div class="currency-row" id="currency-row">
-            <!-- FROM -->
             <div class="currency-picker" id="from-picker">
               <label class="input-label">From</label>
               <div class="picker-box">
@@ -83,7 +81,6 @@
               </div>
             </div>
 
-            <!-- Swap Button -->
             <button
               type="button"
               class="swap-btn"
@@ -94,7 +91,6 @@
               <i class="fa-solid fa-arrow-right-arrow-left"></i>
             </button>
 
-            <!-- TO -->
             <div class="currency-picker" id="to-picker">
               <label class="input-label">To</label>
               <div class="picker-box">
@@ -110,11 +106,31 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="msg">1USD = 80INR</div>
-        <button>Convert</button>
-      </form>
-    </div>
+
+          <!-- Conversion result with shimmer animation -->
+          <div class="result-display" id="result-display">
+            <div class="result-content">
+              <span class="result-text" id="result-text">1 USD = 80 INR</span>
+              <div class="result-shimmer"></div>
+            </div>
+          </div>
+
+          <!-- Submit button with loading spinner -->
+          <button type="submit" class="convert-btn" id="convert-btn">
+            <span class="btn-text">Convert</span>
+            <span class="btn-loader" id="btn-loader">
+              <i class="fa-solid fa-spinner fa-spin"></i>
+            </span>
+            <i class="fa-solid fa-arrow-right btn-arrow"></i>
+          </button>
+        </form>
+      </section>
+
+      <footer class="app-footer">
+        <p>Powered by live exchange rates &bull; Updated in real-time</p>
+      </footer>
+    </main>
+
     <script src="currency.js"></script>
     <script src="script.js"></script>
   </body>

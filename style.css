@@ -1,10 +1,7 @@
-/* ============================================
-   CURRENCY CONVERTER — MODERN PREMIUM DESIGN
-   ============================================ */
+/* Currency Converter - Premium Dark Theme */
 
-/* --- CSS Custom Properties (Design Tokens) --- */
+/* Design Tokens */
 :root {
-  /* Colors */
   --bg-deep: #0a0a1a;
   --bg-card: rgba(255, 255, 255, 0.06);
   --bg-card-border: rgba(255, 255, 255, 0.1);
@@ -22,7 +19,6 @@
   --border-subtle: rgba(255, 255, 255, 0.08);
   --border-active: rgba(168, 85, 247, 0.4);
 
-  /* Spacing */
   --space-xs: 0.25rem;
   --space-sm: 0.5rem;
   --space-md: 1rem;
@@ -30,7 +26,6 @@
   --space-xl: 2rem;
   --space-2xl: 3rem;
 
-  /* Typography */
   --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-xs: 0.75rem;
   --font-sm: 0.85rem;
@@ -39,21 +34,18 @@
   --font-xl: 1.5rem;
   --font-2xl: 2rem;
 
-  /* Borders */
   --radius-sm: 0.75rem;
   --radius-md: 1rem;
   --radius-lg: 1.5rem;
   --radius-xl: 2rem;
   --radius-full: 50%;
 
-  /* Shadows */
   --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--bg-card-border);
   --shadow-input: 0 2px 8px rgba(0, 0, 0, 0.2);
   --shadow-btn: 0 4px 20px rgba(108, 92, 231, 0.35);
   --shadow-btn-hover: 0 8px 30px rgba(108, 92, 231, 0.5);
   --shadow-glow: 0 0 60px var(--accent-glow);
 
-  /* Transitions */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   --transition-fast: 200ms var(--ease-out);
@@ -61,7 +53,7 @@
   --transition-slow: 500ms var(--ease-out);
 }
 
-/* --- Reset & Base --- */
+/* Reset */
 *,
 *::before,
 *::after {
@@ -88,7 +80,7 @@ body {
   position: relative;
 }
 
-/* --- Animated Background Orbs --- */
+/* Animated background orbs that float around the page */
 .bg-orbs {
   position: fixed;
   inset: 0;
@@ -124,6 +116,7 @@ body {
   animation-delay: -5s;
 }
 
+/* Uses float-center keyframe to preserve translate(-50%, -50%) centering */
 .orb-3 {
   width: 350px;
   height: 350px;
@@ -136,36 +129,21 @@ body {
 }
 
 @keyframes float {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
-  }
-  25% {
-    transform: translate(40px, -30px) scale(1.05);
-  }
-  50% {
-    transform: translate(-20px, 20px) scale(0.95);
-  }
-  75% {
-    transform: translate(30px, 40px) scale(1.02);
-  }
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(40px, -30px) scale(1.05); }
+  50% { transform: translate(-20px, 20px) scale(0.95); }
+  75% { transform: translate(30px, 40px) scale(1.02); }
 }
 
+/* Separate keyframe for centered orb to maintain offset during animation */
 @keyframes float-center {
-  0%, 100% {
-    transform: translate(-50%, -50%) scale(1);
-  }
-  25% {
-    transform: translate(calc(-50% + 40px), calc(-50% - 30px)) scale(1.05);
-  }
-  50% {
-    transform: translate(calc(-50% - 20px), calc(-50% + 20px)) scale(0.95);
-  }
-  75% {
-    transform: translate(calc(-50% + 30px), calc(-50% + 40px)) scale(1.02);
-  }
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  25% { transform: translate(calc(-50% + 40px), calc(-50% - 30px)) scale(1.05); }
+  50% { transform: translate(calc(-50% - 20px), calc(-50% + 20px)) scale(0.95); }
+  75% { transform: translate(calc(-50% + 30px), calc(-50% + 40px)) scale(1.02); }
 }
 
-/* --- App Container --- */
+/* Main app container */
 .app {
   position: relative;
   z-index: 1;
@@ -176,17 +154,11 @@ body {
 }
 
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- Header --- */
+/* Header and logo */
 .app-header {
   text-align: center;
   margin-bottom: var(--space-xl);
@@ -214,14 +186,11 @@ body {
 }
 
 @keyframes pulse-glow {
-  0%, 100% {
-    box-shadow: var(--shadow-btn);
-  }
-  50% {
-    box-shadow: var(--shadow-btn-hover);
-  }
+  0%, 100% { box-shadow: var(--shadow-btn); }
+  50% { box-shadow: var(--shadow-btn-hover); }
 }
 
+/* Gradient text effect on the title */
 .logo-text h1 {
   font-size: var(--font-xl);
   font-weight: 800;
@@ -242,7 +211,7 @@ body {
   margin-top: 2px;
 }
 
-/* --- Card --- */
+/* Glassmorphism card */
 .card {
   background: var(--bg-card);
   backdrop-filter: blur(40px) saturate(150%);
@@ -258,7 +227,7 @@ body {
   box-shadow: var(--shadow-card), var(--shadow-glow);
 }
 
-/* --- Input Group --- */
+/* Form labels */
 .input-label {
   display: block;
   font-size: var(--font-xs);
@@ -269,6 +238,7 @@ body {
   margin-bottom: var(--space-sm);
 }
 
+/* Amount input field */
 .input-wrapper {
   position: relative;
   display: flex;
@@ -306,6 +276,7 @@ body {
   box-shadow: var(--shadow-input), 0 0 0 3px rgba(168, 85, 247, 0.1);
 }
 
+/* Highlight icon on focus or hover */
 .input-wrapper input:focus + .input-icon,
 .input-wrapper:hover .input-icon {
   color: var(--accent-2);
@@ -316,17 +287,18 @@ body {
   font-weight: 400;
 }
 
-/* Number input arrow removal */
+/* Hide native number input spinners */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
 input[type="number"] {
   -moz-appearance: textfield;
 }
 
-/* --- Currency Row --- */
+/* Currency picker row (From / Swap / To) */
 .currency-row {
   display: flex;
   align-items: flex-end;
@@ -402,7 +374,7 @@ input[type="number"] {
   color: var(--accent-2);
 }
 
-/* --- Swap Button --- */
+/* Swap button between From and To pickers */
 .swap-btn {
   flex-shrink: 0;
   width: 44px;
@@ -432,7 +404,7 @@ input[type="number"] {
   transform: rotate(180deg) scale(0.95);
 }
 
-/* --- Result Display --- */
+/* Conversion result panel */
 .result-display {
   margin-top: var(--space-xl);
   position: relative;
@@ -456,31 +428,23 @@ input[type="number"] {
   letter-spacing: -0.01em;
 }
 
+/* Animated shimmer effect across the result panel */
 .result-shimmer {
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(168, 85, 247, 0.06),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.06), transparent);
   animation: shimmer 3s ease-in-out infinite;
 }
 
 @keyframes shimmer {
-  0% {
-    left: -100%;
-  }
-  100% {
-    left: 100%;
-  }
+  0% { left: -100%; }
+  100% { left: 100%; }
 }
 
-/* --- Convert Button --- */
+/* Convert button with gradient animation */
 .convert-btn {
   width: 100%;
   height: 56px;
@@ -506,14 +470,11 @@ input[type="number"] {
 }
 
 @keyframes gradient-shift {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
+/* Glossy overlay on hover */
 .convert-btn::before {
   content: '';
   position: absolute;
@@ -544,6 +505,7 @@ input[type="number"] {
   transform: translateX(4px);
 }
 
+/* Loading state: hide text, show spinner */
 .btn-loader {
   display: none;
 }
@@ -557,7 +519,7 @@ input[type="number"] {
   display: inline-flex;
 }
 
-/* --- Footer --- */
+/* Footer */
 .app-footer {
   text-align: center;
   margin-top: var(--space-xl);
@@ -569,11 +531,7 @@ input[type="number"] {
   font-weight: 500;
 }
 
-/* =====================
-   RESPONSIVE DESIGN
-   ===================== */
-
-/* Tablets and small screens */
+/* Responsive: tablets and small screens */
 @media (max-width: 540px) {
   .app {
     padding: var(--space-md);
@@ -615,7 +573,7 @@ input[type="number"] {
   }
 }
 
-/* Very small screens */
+/* Responsive: very small screens */
 @media (max-width: 360px) {
   :root {
     font-size: 14px;
@@ -626,7 +584,7 @@ input[type="number"] {
   }
 }
 
-/* Large screens */
+/* Responsive: large screens */
 @media (min-width: 768px) {
   .app {
     max-width: 520px;
@@ -637,7 +595,7 @@ input[type="number"] {
   }
 }
 
-/* Prefer reduced motion */
+/* Accessibility: respect user's motion preferences */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -648,7 +606,7 @@ input[type="number"] {
   }
 }
 
-/* --- Utility: Focus Visible --- */
+/* Keyboard focus indicator */
 :focus-visible {
   outline: 2px solid var(--accent-2);
   outline-offset: 2px;

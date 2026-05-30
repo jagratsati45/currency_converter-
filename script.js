@@ -1,7 +1,7 @@
 const BASE_URL =
   "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies";
 
-// DOM Elements
+// DOM references
 const dropdowns = document.querySelectorAll(".currency-picker select");
 const btn = document.querySelector("#convert-btn");
 const form = document.querySelector("#converter-form");
@@ -11,7 +11,7 @@ const msg = document.querySelector("#result-text");
 const swapBtn = document.querySelector("#swap-btn");
 const amountInput = document.querySelector("#amount-input");
 
-// Populate dropdowns
+// Populate both dropdowns with currency options from countryList
 for (let select of dropdowns) {
   for (let currCode in countryList) {
     let newOption = document.createElement("option");
@@ -25,12 +25,13 @@ for (let select of dropdowns) {
     select.append(newOption);
   }
 
+  // Update the flag icon whenever a currency is changed
   select.addEventListener("change", (evt) => {
     updateFlag(evt.target);
   });
 }
 
-// Exchange rate update
+// Fetch live exchange rate and display the converted amount
 const updateExchangeRate = async () => {
   let amtVal = amountInput.value;
   if (amtVal === "" || amtVal < 1) {
@@ -38,7 +39,6 @@ const updateExchangeRate = async () => {
     amountInput.value = "1";
   }
 
-  // Show loading state
   btn.classList.add("loading");
   msg.style.opacity = "0.5";
 
@@ -49,7 +49,7 @@ const updateExchangeRate = async () => {
     const rate = data[fromCurr.value.toLowerCase()][toCurr.value.toLowerCase()];
     const finalAmount = (amtVal * rate).toFixed(2);
 
-    // Animate result
+    // Fade out, update text, then fade back in
     msg.style.transition = "opacity 0.3s ease";
     msg.style.opacity = "0";
 
@@ -65,7 +65,7 @@ const updateExchangeRate = async () => {
   }
 };
 
-// Update flag image
+// Update the flag image to match the selected currency
 const updateFlag = (element) => {
   let currCode = element.value;
   let countryCode = countryList[currCode];
@@ -74,7 +74,7 @@ const updateFlag = (element) => {
   img.src = newSrc;
 };
 
-// Swap currencies
+// Swap the From and To currencies, then re-convert
 swapBtn.addEventListener("click", () => {
   const tempVal = fromCurr.value;
   fromCurr.value = toCurr.value;
@@ -85,18 +85,18 @@ swapBtn.addEventListener("click", () => {
   updateExchangeRate();
 });
 
-// Form submit
+// Convert on form submission
 form.addEventListener("submit", (evt) => {
   evt.preventDefault();
   updateExchangeRate();
 });
 
-// Load initial rate
+// Fetch rate on initial page load
 window.addEventListener("load", () => {
   updateExchangeRate();
 });
 
-// Live conversion on input change (debounced)
+// Auto-convert as user types, debounced to avoid excessive API calls
 let debounceTimer;
 amountInput.addEventListener("input", () => {
   clearTimeout(debounceTimer);
